@@ -63,8 +63,12 @@ const SlotModal: React.FC<SlotModalProps> = ({ currentUser, slot, open, handleOn
         bgcolor: 'background.paper', p: 4, width: 400, boxShadow: 24, borderRadius: 2
       }}>
         <Typography variant="h6">Slot Details</Typography>
-        {isStudent && <Typography>Coach: {slot.coach.name} ({slot.coach.phone_number})</Typography>}
-        {isCoach && slotBooked && (
+        {isStudent && (
+        <Typography>
+            Coach: {slot.coach.name}
+            {slotBooked && ` (${slot.coach.phone_number})`}
+        </Typography>
+        )}        {isCoach && slotBooked && (
           <Typography>Booked by: {slot.student?.name} ({slot.student?.phone_number})</Typography>
         )}
         <Typography>Start: {DateTime.fromISO(slot.start_time).toLocaleString(DateTime.DATETIME_MED)}</Typography>
